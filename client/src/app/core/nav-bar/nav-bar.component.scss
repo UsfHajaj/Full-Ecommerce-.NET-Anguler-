@@ -1,0 +1,211 @@
+// Simple and clean variables
+
+// Base background colors
+$navbar-bg: #1e1e2f;
+$navbar-light: #2c2c40;
+
+// Text colors
+$text-white: #f5f6fa;
+$text-light: #c8d6e5;
+
+// Accent (Primary Button / Links)
+$accent-blue: #00a8ff;
+$accent-hover: #0097e6;
+
+// Borders or Separators
+$border-light: #3a3a4f;
+
+.navbar {
+  background-color: $navbar-bg;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid $border-light;
+
+  .container {
+    max-width: 1200px;
+  }
+
+  // Brand
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: $text-white;
+
+    &:hover {
+      text-decoration: none;
+      color: $text-white;
+    }
+
+    .logo {
+      width: 32px;
+      height: 32px;
+      margin-right: 10px;
+    }
+
+    i {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: $text-white;
+    }
+  }
+
+  // Navigation links
+  .navbar-nav {
+    .nav-item {
+      .nav-link {
+        color: $text-light;
+        font-size: 0.9rem;
+        padding: 8px 15px;
+        text-transform: capitalize;
+
+        &:hover {
+          color: $text-white;
+          background-color: rgba(255, 255, 255, 0.1);
+          border-radius: 4px;
+        }
+        &.active {
+          color: $text-white;
+          background-color: rgba(255, 255, 255, 0.1);
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+
+  // Search form - make it compact
+  .form-inline {
+    .input-group {
+      width: 300px;
+
+      .form-control {
+        background-color: $navbar-light;
+        border: 1px solid $border-light;
+        color: $text-white;
+        padding: 8px 12px;
+        font-size: 0.9rem;
+        border-radius: 4px 0 0 4px;
+
+        &::placeholder {
+          color: #bdc3c7;
+        }
+
+        &:focus {
+          background-color: $navbar-light;
+          border-color: $accent-blue;
+          color: $text-white;
+          box-shadow: none;
+        }
+      }
+
+      .input-group-append {
+        .btn {
+          background-color: $accent-blue;
+          border: 1px solid $accent-blue;
+          padding: 8px 12px;
+          border-radius: 0 4px 4px 0;
+
+          &:hover {
+            background-color: $accent-hover;
+            border-color: $accent-hover;
+          }
+
+          .material-icons {
+            font-size: 1.1rem;
+            color: $text-white;
+          }
+        }
+      }
+    }
+  }
+
+  // Right side icons
+  .navbar-nav.ml-auto {
+    .navbar-item {
+      .nav-link {
+        color: $text-light;
+        padding: 8px 12px;
+
+        &:hover {
+          color: $text-white;
+          background-color: rgba(255, 255, 255, 0.1);
+          border-radius: 4px;
+        }
+
+        .material-icons {
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    // Dropdown menu
+    .dropdown-menu {
+      background-color: $navbar-light;
+      border: 1px solid $border-light;
+      border-radius: 4px;
+      margin-top: 5px;
+      right: -15px;
+      
+
+      .dropdown-item {
+        color: $text-light;
+        padding: 8px 15px;
+        font-size: 0.9rem;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+          color: $text-white;
+        }
+
+        i {
+          margin-left: 8px;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}
+
+// Remove extra spacing and make it more compact
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+}
+
+// Simple responsive
+@media (max-width: 768px) {
+  .navbar {
+    .form-inline .input-group {
+      width: 250px;
+      margin: 10px 0;
+      display: none;
+    }
+    .navbar-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar {
+    .form-inline .input-group {
+      width: 200px;
+    }
+
+    .navbar-brand {
+      .logo {
+        width: 28px;
+        height: 28px;
+      }
+
+      i {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
+.navbar-toggler {
+  color: $text-white;
+}

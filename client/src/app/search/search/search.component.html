@@ -1,0 +1,50 @@
+<!-- HTML Template -->
+<div class="search-container">
+  <!-- Header Section -->
+  <div class="search-header mb-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex align-items-center justify-content-between">
+            <h2 class="search-title mb-0">
+              <i class="fas fa-search me-2"></i>
+              Search Results for "{{ productParams.search }}"
+            </h2>
+            <div class="results-count" *ngIf="products?.length">
+              <span class="badge bg-primary fs-6">{{ products.length }} منتج</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Loading State -->
+    <div *ngIf="loading" class="text-center py-5">
+      <div class="spinner-border text-primary mb-3" role="status">
+        <span class="visually-hidden">جاري التحميل...</span>
+      </div>
+      <p class="text-muted">جاري البحث عن المنتجات...</p>
+    </div>
+
+    <!-- No Results -->
+    <div *ngIf="!loading && (!products || products.length === 0)" class="no-results text-center py-5">
+      <div class="no-results-icon mb-3">
+        <i class="fas fa-search-minus"></i>
+      </div>
+      <h4 class="text-muted">لا توجد منتجات</h4>
+      <p class="text-muted">جرب البحث بكلمات مختلفة</p>
+    </div>
+
+    <!-- Products Grid -->
+    <div *ngIf="!loading && products?.length > 0" class="row g-4">
+      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let item of products; trackBy: trackByFn">
+        <div class="product-wrapper">
+          <app-shop-item [product]="item"></app-shop-item>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

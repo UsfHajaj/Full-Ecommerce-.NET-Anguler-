@@ -1,0 +1,510 @@
+
+$primary-color: #2563eb;
+$secondary-color: #64748b;
+$accent-color: #10b981;
+$danger-color: #ef4444;
+$warning-color: #f59e0b;
+$dark-color: #1e293b;
+$light-gray: #f8fafc;
+$medium-gray: #e2e8f0;
+$text-primary: #1e293b;
+$text-secondary: #64748b;
+$border-radius: 12px;
+$border-radius-sm: 8px;
+$shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
+$shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+$shadow-large: 0 10px 25px rgba(0, 0, 0, 0.15);
+$transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+.custom-breadcrumb {
+  background: white;
+  padding: 1rem 1.5rem;
+  border-radius: $border-radius;
+  box-shadow: $shadow-light;
+  margin-bottom: 2rem;
+
+  .breadcrumb-item {
+    font-size: 0.875rem;
+
+    a {
+      color: $text-secondary;
+      text-decoration: none;
+      transition: $transition;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+
+    &.active {
+      color: $text-primary;
+      font-weight: 500;
+    }
+
+    // &:not(.active)::after {
+    //   content: '';
+    //   margin: 0 0.5rem;
+    //   color: $text-secondary;
+    // }
+  }
+}
+
+// Product Images Section
+// ----------------------
+.product-images-container {
+  .main-image-wrapper {
+    position: relative;
+    border-radius: $border-radius;
+    overflow: hidden;
+    box-shadow: $shadow-medium;
+    background: white;
+
+    .main-product-image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      transition: $transition;
+    }
+
+    .image-overlay {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      opacity: 0;
+      transition: $transition;
+
+      .btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: $text-primary;
+        transition: $transition;
+
+        &:hover {
+          background: white;
+          transform: scale(1.1);
+        }
+
+        &.favorite-btn:hover {
+          color: $danger-color;
+        }
+      }
+    }
+
+    &:hover .image-overlay {
+      opacity: 1;
+    }
+
+    &:hover .main-product-image {
+      transform: scale(1.05);
+    }
+  }
+
+  .thumbnail-gallery {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .thumbnail-item {
+      border-radius: $border-radius-sm;
+      overflow: hidden;
+      border: 3px solid transparent;
+      transition: $transition;
+      cursor: pointer;
+
+      &.active {
+        border-color: $primary-color;
+        transform: scale(1.05);
+      }
+
+      &:hover {
+        border-color: $primary-color;
+        transform: scale(1.05);
+      }
+
+      img {
+        width: 80px;
+        height: 60px;
+        object-fit: cover;
+        display: block;
+      }
+    }
+  }
+}
+
+// Product Details Section
+// -----------------------
+.product-details {
+  .product-header {
+    .product-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: $text-primary;
+      margin-bottom: 1rem;
+
+      @media (max-width: 768px) {
+        font-size: 1.5rem;
+      }
+    }
+
+    .product-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      .rating-container {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        .stars {
+          color: #fbbf24;
+          font-size: 1rem;
+        }
+
+        .rating-text {
+          font-weight: 600;
+          color: $text-primary;
+        }
+
+        .review-count {
+          color: $text-secondary;
+          font-size: 0.875rem;
+        }
+      }
+
+      .product-status {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        .badge {
+          font-size: 0.75rem;
+          padding: 0.25rem 0.75rem;
+          border-radius: 20px;
+        }
+
+        .stock-count {
+          font-size: 0.875rem;
+          color: $text-secondary;
+        }
+      }
+    }
+  }
+
+  .price-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    .current-price {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: $accent-color;
+    }
+
+    .old-price {
+      font-size: 1.25rem;
+      color: $text-secondary;
+      text-decoration: line-through;
+    }
+
+    .discount-badge {
+      background: $danger-color;
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+  }
+
+  .product-description {
+    h4 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: $text-primary;
+    }
+
+    p {
+      color: $text-secondary;
+      line-height: 1.7;
+    }
+  }
+
+  .product-specs {
+    h4 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: $text-primary;
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 0.75rem;
+
+      .spec-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.75rem;
+        background: $light-gray;
+        border-radius: $border-radius-sm;
+
+        .spec-label {
+          font-weight: 500;
+          color: $text-secondary;
+        }
+
+        .spec-value {
+          font-weight: 600;
+          color: $text-primary;
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  .product-options {
+    .option-group {
+      .option-label {
+        display: block;
+        font-weight: 600;
+        color: $text-primary;
+        margin-bottom: 0.75rem;
+      }
+
+      .color-options {
+        display: flex;
+        gap: 0.5rem;
+
+        .color-option {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          cursor: pointer;
+          border: 3px solid transparent;
+          transition: $transition;
+
+          &.active,
+          &:hover {
+            border-color: $primary-color;
+            transform: scale(1.1);
+          }
+        }
+      }
+
+      .storage-options {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+
+        .storage-option {
+          padding: 0.5rem 1rem;
+          border: 2px solid $medium-gray;
+          background: white;
+          border-radius: $border-radius-sm;
+          color: $text-secondary;
+          font-weight: 500;
+          cursor: pointer;
+          transition: $transition;
+
+          &.active {
+            border-color: $primary-color;
+            background: $primary-color;
+            color: white;
+          }
+
+          &:hover:not(.active) {
+            border-color: $primary-color;
+            color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// Product Tabs Section
+// ---------------------
+.product-tabs {
+  background: white;
+  border-radius: $border-radius;
+  box-shadow: $shadow-light;
+  padding: 1.5rem;
+
+  .custom-tabs {
+    border-bottom: 1px solid $medium-gray;
+    margin-bottom: 1rem;
+
+    .nav-link {
+      color: $text-secondary;
+      font-weight: 500;
+      padding: 0.75rem 1.25rem;
+      border: none;
+      border-radius: $border-radius-sm $border-radius-sm 0 0;
+      transition: $transition;
+      background-color: transparent;
+
+      &:hover {
+        color: $primary-color;
+        background-color: $light-gray;
+      }
+
+      &.active {
+        color: $primary-color;
+        background-color: $light-gray;
+        font-weight: 600;
+        border-bottom: 2px solid $primary-color;
+      }
+    }
+  }
+
+  .custom-tab-content {
+    .tab-content-wrapper {
+      animation: fadeIn 0.4s ease-in-out;
+
+      h5,
+      h6 {
+        color: $text-primary;
+        margin-bottom: 1rem;
+      }
+
+      p,
+      ul {
+        color: $text-secondary;
+      }
+
+      ul {
+        padding-left: 1.5rem;
+
+        li {
+          margin-bottom: 0.5rem;
+          list-style: disc;
+        }
+      }
+    }
+
+    .specs-table {
+      .spec-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid $medium-gray;
+
+        .spec-category {
+          font-weight: 600;
+          color: $text-primary;
+        }
+
+        .spec-details {
+          color: $text-secondary;
+        }
+      }
+    }
+
+    .reviews-summary {
+      .rating-overview {
+        display: flex;
+        align-items: center;
+
+        .overall-rating {
+          font-size: 2rem;
+          font-weight: bold;
+          color: $primary-color;
+
+          .stars {
+            color: $accent-color;
+            font-size: 1.25rem;
+          }
+
+          p {
+            color: $text-secondary;
+            font-size: 0.875rem;
+          }
+        }
+      }
+    }
+
+    .reviews-list {
+      .review-item {
+        border-bottom: 1px solid $medium-gray;
+        padding: 1rem 0;
+
+        .reviewer-info {
+          display: flex;
+          align-items: center;
+          margin-bottom: 0.5rem;
+
+          .reviewer-avatar {
+            width: 40px;
+            height: 40px;
+            background: $primary-color;
+            color: white;
+            font-weight: bold;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem;
+          }
+
+          .reviewer-details {
+            h6 {
+              margin: 0;
+              color: $text-primary;
+              font-size: 1rem;
+              font-weight: 600;
+            }
+
+            .review-rating {
+              color: $accent-color;
+              font-size: 1rem;
+            }
+          }
+        }
+
+        .review-text {
+          color: $text-secondary;
+          font-size: 0.95rem;
+          margin-bottom: 0.25rem;
+        }
+
+        .review-date {
+          font-size: 0.8rem;
+          color: $text-secondary;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+::ng-deep .ngxImageZoomContainer > img{
+  max-height: 300px;
+}

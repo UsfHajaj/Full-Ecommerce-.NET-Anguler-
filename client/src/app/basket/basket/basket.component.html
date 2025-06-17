@@ -1,0 +1,79 @@
+@if(basket == null || basket.basketItems == null || basket.basketItems.length == 0){
+  <div class=" d-flex justify-content-center align-items-center m-5 ">
+        <div class="text-center animate__animated animate__fadeInUp slow-fade shadow-lg p-5 rounded-4 classy-box">
+            <i class="bi bi-bag-x-fill display-4 text-danger mb-3"></i>
+            <h2 class="fw-bold mb-2">Your Basket is Empty</h2>
+            <p class="text-muted mb-4">Looks like you haven’t picked your destiny yet.</p>
+            <a routerLink="/shop" class="btn btn-outline-danger btn-lg px-4 py-2 classy-button">
+                Explore Products
+            </a>
+        </div>
+    </div>
+
+}
+ @else {
+<div class="container pt-4 felx-container">
+  <div class="basket-container">
+    <table class="table table-hover custom-table">
+      <thead>
+        <tr class="bg-info text-white">
+          <th>Product</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of basket.basketItems; track $index) {
+        <tr>
+          <td>
+            <a
+              class="text-dark text-decoration-none"
+              routerLink="/shop/details/{{ item.id }}"
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                padding: 0 10px;
+              "
+              >{{ item.name }}
+              <img
+                src="https://localhost:44375/{{ item.image }}"
+                class="product-image img-fluid"
+                alt=""
+              />
+            </a>
+          </td>
+
+          <td class="description">{{ item.description }}</td>
+          <td>{{ item.price | currency }}</td>
+          <td>
+            <div class="d-flex justify-content-center align-items-center">
+              <button (click)="incrementBasket(item)" class="btn btn-sm text-info">
+                <i class="fa fa-plus"></i>
+              </button>
+              <span class="mx-2">{{ item.quanatity }}</span>
+              <button (click)="decrementBasket(item)" class="btn btn-sm text-danger">
+                <i class="fa fa-minus"></i>
+              </button>
+            </div>
+          </td>
+          <td>{{ item.quanatity*item.price|currency }}</td>
+          <td>
+            <button (click)="removeBasket(item)" class="btn btn-danger">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+          }
+      </tbody>
+    </table>
+  </div>
+  <div class="order-summary-container">
+    <app-order-total></app-order-total>
+    <a routerLink="/checkout" class="btn btn-dark w-100 mt-3 ">Proceed To Checkout</a>
+  </div>
+</div>
+}

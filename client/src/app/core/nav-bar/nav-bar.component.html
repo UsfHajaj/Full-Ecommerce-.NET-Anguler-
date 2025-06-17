@@ -1,0 +1,135 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid mx-2">
+    <a routerLink="/" class="navbar-brand">
+      <img src="./assets/EcomIcons.png" class="logo" alt="" />
+      <i class="text-white">E-Wasla</i>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="isNavbarCollapsed = !isNavbarCollapsed"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="material-icons">menu</i>
+    </button>
+    <div
+      class="collapse navbar-collapse"
+      [ngClass]="{ show: !isNavbarCollapsed }"
+      id="navbarSupportedContent"
+    >
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="nav-link"
+            >home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a routerLink="/shop" routerLinkActive="active" class="nav-link"
+            >Shopping</a
+          >
+        </li>
+        <li class="nav-item">
+          <a routerLink="/about" class="nav-link">About Us</a>
+        </li>
+        <li class="nav-item"><a href="" class="nav-link">Best seller</a></li>
+      </ul>
+      <form
+        class="form-inline ms-auto me-2"
+        (submit)="onSearch(); $event.preventDefault()"
+      >
+        <div class="input-group">
+          <input
+            type="text"
+            [(ngModel)]="searchTerm"
+            name="search"
+            type="text"
+            class="form-control"
+            placeholder="search.."
+          />
+          <div class="input-group-append">
+            <button class="btn btn-light" type="submit">
+              <i class="material-icons">search</i>
+            </button>
+          </div>
+        </div>
+      </form>
+      <ul class="navbar-nav ml-auto align-items-center">
+        <li class="navbar-item">
+          <a
+            routerLink="/basket"
+            class="nav-link"
+            matBadge="15"
+            matBadgeColor="warn"
+            style="position: relative; z-index: 1"
+          >
+            <div
+              style="
+                color: white;
+                text-align: center;
+                color: white;
+                text-align: center;
+                background-color: #ef4444;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                position: absolute;
+                z-index: 1;
+                top: 0px;
+                right: 2px;
+                font-size: 12px;
+              "
+              *ngIf="(basketLen | async)?.basketItems?.length"
+            >
+              {{ (basketLen | async).basketItems.length }}
+            </div>
+            <i class="material-icons">shopping_cart</i>
+          </a>
+        </li>
+        <li class="navbar-item dropdown">
+          <a
+            (click)="toggleDropdown()"
+            class="nav-link dropdown-toggle"
+            id="NavBarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="material-icons">account_circle</i>
+          </a>
+          <div
+            [ngClass]="{ show: visibale }"
+            class="dropdown-menu dropdown-menu-right"
+            aria-labelledby="NavBarDropdown"
+          >
+            <ng-container *ngIf="!isloginfunc()">
+              <a class="dropdown-item" routerLink="/account/register"
+                >Register <i class="fa fa-user-plus"></i></a
+              ><a routerLink="/account/login" class="dropdown-item"
+                >Login <i class="fa fa-sign-in"></i
+              ></a>
+            </ng-container>
+            <ng-container *ngIf="isloginfunc()">
+              <button class="dropdown-item" (click)="logout()">
+                Logout <i class="fa fa-user-minus"></i>
+              </button>
+              <a
+                class="dropdown-item"
+                matBadge="1"
+                matBadgeSize="large"
+                routerLink="/orders"
+                >My Order <i class="fa fa-list"></i>
+              </a>
+            </ng-container>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

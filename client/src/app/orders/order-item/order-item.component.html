@@ -1,0 +1,79 @@
+<div class="container pt-4 felx-container">
+  <div class="basket-container">
+    <table class="table table-hover custom-table">
+      <thead>
+        <tr class="bg-info text-white">
+          <th>Product</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of orders.orderItems; track $index) {
+        <tr>
+          <td>
+            <a
+              class="text-dark text-decoration-none"
+              routerLink="/shop/details/{{ item.productItemId }}"
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                padding: 0 10px;
+              "
+              >{{ item.productName }}
+              <img
+                src="https://localhost:44375/{{ item.mainImage }}"
+                class="product-image img-fluid"
+                alt=""
+              />
+            </a>
+          </td>
+
+          <td class="description">{{ "al ala ala" }}</td>
+          <td>{{ item.price | currency }}</td>
+          <td>{{ item.quntity  }}</td>
+          <td>{{ item.quntity * item.price|currency }}</td>
+
+          }
+      </tbody>
+    </table>
+  </div>
+  <div class="order-summary-container">
+    <div class="order-summary bg-light text-uppercase text-info p-3 text-center">
+  Order Summary
+</div>
+<div class="order-details p-3">
+  <p style="font-style: italic;">Shippin Will be Added on Total Price</p>
+
+  <ng-container>
+<ul class="list-unstyled mb-4">
+  <li class="d-flex justify-content-between border-bottom py-3">
+    <strong class="text-muted">Order Subtotal</strong>
+    <strong>{{orders.subTotal|currency}}</strong>
+  </li>
+  <li class="d-flex justify-content-between border-bottom py-3">
+    <strong class="text-muted">Order Shipping</strong>
+    <strong>{{(orders.subTotal-orders.total)|currency}}</strong>
+  </li>
+  <li class="d-flex justify-content-between border-bottom py-3">
+    <strong class="text-muted">Order Status</strong>
+    <strong [ngClass]="{
+      'text-warning':orders.status=='Pending',
+      'text-denger':orders.status=='PaymentFaild',
+      'text-success':orders.status=='PaymentReceived',
+    }">{{orders.status}}</strong>
+  </li>
+  <li class="d-flex justify-content-between border-bottom py-3">
+    <strong class="text-muted">Order Total</strong>
+    <strong>{{orders.total|currency}}</strong>
+  </li>
+</ul>
+  </ng-container>
+
+</div>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+<!-- <button mat-raised-button (click)="uppdateAdderss()">Save Changes</button> -->
+<button
+  class="btn"
+  [ngClass]="{
+    'btn-success': canEdit === true,
+    'btn-danger': canEdit === false
+  }"
+  (click)="canEdit = !canEdit"
+>
+  {{ !canEdit ? "Edit-Dissbled" : "Edit-Enable" }}
+
+</button>
+<form [formGroup]="address">
+  <mat-form-field>
+    <mat-label>First Name</mat-label>
+    <input
+      matInput
+      placeholder="First name"
+      formControlName="firstName"
+      required
+      [readonly]="!canEdit"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Last Name</mat-label>
+    <input
+      matInput
+      placeholder="Last name"
+      formControlName="lastName"
+      required
+      [readonly]="!canEdit"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Street</mat-label>
+    <input
+      matInput
+      placeholder="Street"
+      formControlName="street"
+      required
+      [readonly]="!canEdit"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>City</mat-label>
+    <input
+      matInput
+      placeholder="City"
+      formControlName="city"
+      required
+      [readonly]="!canEdit"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>ZipCode</mat-label>
+    <input
+      matInput
+      placeholder="ZIP Code"
+      formControlName="zipCode"
+      required
+      [readonly]="!canEdit"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>State</mat-label>
+    <input
+      matInput
+      placeholder="State"
+      formControlName="state"
+      required
+      [readonly]="!canEdit"
+    />
+  </mat-form-field>
+  <div>
+    <button mat-button matStepperNext>Next</button>
+    <button mat-flat-button (click)="uppdateAdderss()">Save Changes</button>
+  </div>
+</form>
